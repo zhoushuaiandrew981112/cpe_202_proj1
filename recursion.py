@@ -10,6 +10,7 @@ import ctypes
 def main():
     pass
 
+
 def add(x, y):
     if y == 0:
         return x
@@ -58,8 +59,33 @@ def div(x, y):
 
 
 def mod(x, y):
-    pass
+    radix = 10
+    if y == 0:
+        raise ValueError
+    elif x == y:
+        return 0
+    elif x > 0 and y > 0 or x < 0 and y < 0:
+        if abs(x) < abs(y):
+            return x
+        elif abs(x) > abs(y):
+            return mod(sub(x, y), y)
+    elif x < 0 and y > 0:
+        if abs(x) < y:
+            return add(x, y)
+        elif abs(x) > y:
+            return mod(add(x, y), y)
+    elif x > 0 and y < 0:
+        if x < abs(y):
+            return add(x, y)
+        elif x > abs(y):
+            return mod(add(x, y), y)
+
+
+
 
 
 if __name__ == "__main__":
     main()
+
+
+

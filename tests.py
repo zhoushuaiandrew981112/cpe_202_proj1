@@ -114,6 +114,30 @@ class TestRecursion(unittest.TestCase):
         self.assertEqual(div(8, -3), -2)      # test positive int div positive int equal negative
         self.assertEqual(div(-8, -3), 2)      # test negative int div negative int equal positive
 
+        """ mod(x, y) """
+    def test_mod_ValueError(self):            # test raising ValueError
+        with self.assertRaises(ValueError):    
+            mod(0, 0)                         # zero mod zero
+        with self.assertRaises(ValueError):
+            mod(1, 0)                         # positive odd int mod zero
+        with self.assertRaises(ValueError):
+            mod(-1, 0)                        # negative odd int mod zero
+        with self.assertRaises(ValueError):
+            mod(2, 0)                         # positive even int mod zero
+        with self.assertRaises(ValueError):
+            mod(-2, 0)                        # negative even int mod zero
+
+
+    def test_mod_signed_big_mod_small(self):  # test num with bugger magnitude mod num with smaller magnitude
+        self.assertEqual(mod(6, 4), 2)        # pos even int mod pos even int
+        self.assertEqual(mod(6, -4), -2)      # pos even int mod neg even int
+        self.assertEqual(mod(-6, 4), 2)       # neg even int mod pos even int
+        self.assertEqual(mod(-6, -4), -2)     # neg even int mod neg even int 
+
+
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
